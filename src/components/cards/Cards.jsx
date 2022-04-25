@@ -6,12 +6,12 @@ export const Cards = () => {
     <div className="cards-container">
       {data.map((movie, index) => (
         <div key={index} className="movie-card">
-          <h2>{movie.Title}</h2>
-          <button className="movie-poster">
-            <img src={movie.Poster} alt={`${movie.Title} poster`} />
+          <h2 className="movie-title">{movie.Title}</h2>
+          <button className="btn-poster">
+            <img className="poster" src={movie.Poster} alt={`${movie.Title} poster`} />
           </button>
           <div className="info-bar">
-            <i className="public-time">
+            <button className="public-time">
               <svg
                 className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
                 focusable="false"
@@ -21,7 +21,7 @@ export const Cards = () => {
                 <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"></path>
               </svg>
               {movie.Year}
-            </i>
+            </button>
             <button className="like-icon">
               <svg
                 className="MuiSvgIcon-root"
