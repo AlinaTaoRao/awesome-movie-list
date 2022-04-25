@@ -1,7 +1,7 @@
 import "./styles.css";
-import { data } from "../../data.js";
 
-export const Cards = () => {
+export const Cards = ({data}) => {
+  console.log('data: ', data);
   return (
     <div className="cards-container">
       {data.map((movie, index) => (
