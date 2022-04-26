@@ -469,5 +469,7 @@ export const data = [
       ]
     }
   ];
+
+  export const movieDetail = {};
   
   

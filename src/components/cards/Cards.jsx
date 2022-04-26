@@ -1,14 +1,30 @@
 import "./styles.css";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { movieDetail } from "../../data.js";
 
-export const Cards = ({data}) => {
-  console.log('data: ', data);
+export const Cards = ({ data }) => {
+  // console.log("data: ", data);
+
+  function updateMovieDetail(targetMovie) {
+    Object.assign(movieDetail, targetMovie);
+  }
+
   return (
     <div className="cards-container">
       {data.map((movie, index) => (
-        <div key={index} className="movie-card">
+        <div key={`${index}-${movie.Title}`} className="movie-card">
           <h2 className="movie-title">{movie.Title}</h2>
           <button className="btn-poster">
-            <img className="poster" src={movie.Poster} alt={`${movie.Title} poster`} />
+            <Link to="/details">
+              console.log("movie.imdbID:", movie.imdbID);
+              <img
+                className="poster"
+                src={movie.Poster}
+                alt={`${movie.Title} poster`}
+                onClick={() => updateMovieDetail(movie)}
+              />
+            </Link>
           </button>
           <div className="info-bar">
             <button className="public-time">

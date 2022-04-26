@@ -1,8 +1,11 @@
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 export const Logo = ({handleHome}) => {
+  
   return (
     <div className="app-header-logo">
+      <Link to="/">
       <button className="btn-logo" onClick={handleHome}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -131,6 +134,7 @@ export const Logo = ({handleHome}) => {
           </g>
         </svg>
       </button>
+      </Link>
     </div>
   );
 };
