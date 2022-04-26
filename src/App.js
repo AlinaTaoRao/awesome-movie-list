@@ -15,7 +15,8 @@ function App() {
   // filter movies
   useEffect(() => {
     /* way 1: .match(), works, best way*/
-    const myMovies=data.filter(item => item.Title.match(new RegExp(movieName, 'i')));
+    const myMovies=data.filter(item => item.Title.match(new RegExp(movieName, 'i'))); //option 1: includes, works
+    // const myMovies=data.filter(item => item.Title.match(new RegExp(`\\b${movieName}\\b`, 'i'))); // option 2: search word, works
     /* way 2: includes(), works*/
     // const myMovies = data.filter((item) =>
     //   item.Title.toLowerCase().includes(movieName.toLowerCase())
