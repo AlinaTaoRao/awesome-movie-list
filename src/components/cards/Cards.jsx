@@ -1,6 +1,5 @@
 import "./styles.css";
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { movieDetail } from "../../data.js";
 
 export const Cards = ({ data }) => {
@@ -17,7 +16,6 @@ export const Cards = ({ data }) => {
           <h2 className="movie-title">{movie.Title}</h2>
           <button className="btn-poster">
             <Link to="/details">
-              console.log("movie.imdbID:", movie.imdbID);
               <img
                 className="poster"
                 src={movie.Poster}

@@ -1,19 +1,17 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { data } from "./data.js";
+import { data, movieDetail} from "./data.js";
 import { Cards } from "./components/cards/Cards.jsx";
 import { SearchBox } from "./components/search-box/SearchBox.jsx";
 import { Logo } from "./components/logo/Logo.jsx";
 import { MovieDetails } from "./components/movie-details/MovieDetails.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { movieDetail } from "./data.js";
 
 function App() {
   // add state
   const [movieData, setMovieData] = useState(data);
   const [movieName, setMovieName] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [toDetailsMovie, setToDetailsMovie] = useState({});
 
   // filter movies
   useEffect(() => {
