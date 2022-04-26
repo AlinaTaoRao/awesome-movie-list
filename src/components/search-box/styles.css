@@ -1,0 +1,12 @@
+.search-box {
+    background-color: gray;
+    height: 50px;
+}
+
+.movie-name-input .movie-name-search {
+    align-self: center;
+}
+
+.movie-name-input {
+    height: 20px;
+}

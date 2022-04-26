@@ -1,0 +1,7 @@
+.details-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    column-count: 2;
+    align-items: stretch;
+}

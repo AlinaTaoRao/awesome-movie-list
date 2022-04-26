@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f6c700" />
+    <meta
+      name="description"
+      content="Movies app using react-query for server-side state management"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>React Query Movies App</title>
+    <link href="/static/css/main.f4ac19d6.chunk.css" rel="stylesheet" />
+    <style data-jss="" data-meta="MuiPaper">
+      .MuiPaper-root {
+        color: #fff;
+        transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        background-color: #424242;
+      }
+      .MuiPaper-rounded {
+        border-radius: 4px;
+      }
+      .MuiPaper-outlined {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .MuiPaper-elevation0 {
+        box-shadow: none;
+      }
+      .MuiPaper-elevation1 {
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+          0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation2 {
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+          0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation3 {
+        box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
+          0px 3px 4px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation4 {
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+          0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation5 {
+        box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+          0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation6 {
+        box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+          0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation7 {
+        box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2),
+          0px 7px 10px 1px rgba(0, 0, 0, 0.14),
+          0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation8 {
+        box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+          0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+          0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation9 {
+        box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.2),
+          0px 9px 12px 1px rgba(0, 0, 0, 0.14),
+          0px 3px 16px 2px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation10 {
+        box-shadow: 0px 6px 6px -3px rgba(0, 0, 0, 0.2),
+          0px 10px 14px 1px rgba(0, 0, 0, 0.14),
+          0px 4px 18px 3px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation11 {
+        box-shadow: 0px 6px 7px -4px rgba(0, 0, 0, 0.2),
+          0px 11px 15px 1px rgba(0, 0, 0, 0.14),
+          0px 4px 20px 3px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation12 {
+        box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2),
+          0px 12px 17px 2px rgba(0, 0, 0, 0.14),
+          0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation13 {
+        box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2),
+          0px 13px 19px 2px rgba(0, 0, 0, 0.14),
+          0px 5px 24px 4px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation14 {
+        box-shadow: 0px 7px 9px -4px rgba(0, 0, 0, 0.2),
+          0px 14px 21px 2px rgba(0, 0, 0, 0.14),
+          0px 5px 26px 4px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation15 {
+        box-shadow: 0px 8px 9px -5px rgba(0, 0, 0, 0.2),
+          0px 15px 22px 2px rgba(0, 0, 0, 0.14),
+          0px 6px 28px 5px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation16 {
+        box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
+          0px 16px 24px 2px rgba(0, 0, 0, 0.14),
+          0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation17 {
+        box-shadow: 0px 8px 11px -5px rgba(0, 0, 0, 0.2),
+          0px 17px 26px 2px rgba(0, 0, 0, 0.14),
+          0px 6px 32px 5px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation18 {
+        box-shadow: 0px 9px 11px -5px rgba(0, 0, 0, 0.2),
+          0px 18px 28px 2px rgba(0, 0, 0, 0.14),
+          0px 7px 34px 6px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation19 {
+        box-shadow: 0px 9px 12px -6px rgba(0, 0, 0, 0.2),
+          0px 19px 29px 2px rgba(0, 0, 0, 0.14),
+          0px 7px 36px 6px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation20 {
+        box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2),
+          0px 20px 31px 3px rgba(0, 0, 0, 0.14),
+          0px 8px 38px 7px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation21 {
+        box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2),
+          0px 21px 33px 3px rgba(0, 0, 0, 0.14),
+          0px 8px 40px 7px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation22 {
+        box-shadow: 0px 10px 14px -6px rgba(0, 0, 0, 0.2),
+          0px 22px 35px 3px rgba(0, 0, 0, 0.14),
+          0px 8px 42px 7px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation23 {
+        box-shadow: 0px 11px 14px -7px rgba(0, 0, 0, 0.2),
+          0px 23px 36px 3px rgba(0, 0, 0, 0.14),
+          0px 9px 44px 8px rgba(0, 0, 0, 0.12);
+      }
+      .MuiPaper-elevation24 {
+        box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+          0px 24px 38px 3px rgba(0, 0, 0, 0.14),
+          0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+      }
+    </style>
+    <style data-jss="" data-meta="MuiTouchRipple">
+      .MuiTouchRipple-root {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        overflow: hidden;
+        position: absolute;
+        border-radius: inherit;
+        pointer-events: none;
+      }
+      .MuiTouchRipple-ripple {
+        opacity: 0;
+        position: absolute;
+      }
+      .MuiTouchRipple-rippleVisible {
+        opacity: 0.3;
+        animation: MuiTouchRipple-keyframes-enter 550ms
+          cubic-bezier(0.4, 0, 0.2, 1);
+        transform: scale(1);
+      }
+      .MuiTouchRipple-ripplePulsate {
+        animation-duration: 200ms;
+      }
+      .MuiTouchRipple-child {
+        width: 100%;
+        height: 100%;
+        display: block;
+        opacity: 1;
+        border-radius: 50%;
+        background-color: currentColor;
+      }
+      .MuiTouchRipple-childLeaving {
+        opacity: 0;
+        animation: MuiTouchRipple-keyframes-exit 550ms
+          cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .MuiTouchRipple-childPulsate {
+        top: 0;
+        left: 0;
+        position: absolute;
+        animation: MuiTouchRipple-keyframes-pulsate 2500ms
+          cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
+      }
+      @-webkit-keyframes MuiTouchRipple-keyframes-enter {
+        0% {
+          opacity: 0.1;
+          transform: scale(0);
+        }
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+      }
+      @-webkit-keyframes MuiTouchRipple-keyframes-exit {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      @-webkit-keyframes MuiTouchRipple-keyframes-pulsate {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(0.92);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+    <style data-jss="" data-meta="MuiButtonBase">
+      .MuiButtonBase-root {
+        color: inherit;
+        border: 0;
+        cursor: pointer;
+        margin: 0;
+        display: inline-flex;
+        outline: 0;
+        padding: 0;
+        position: relative;
+        align-items: center;
+        user-select: none;
+        border-radius: 0;
+        vertical-align: middle;
+        -moz-appearance: none;
+        justify-content: center;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .MuiButtonBase-root::-moz-focus-inner {
+        border-style: none;
+      }
+      .MuiButtonBase-root.Mui-disabled {
+        cursor: default;
+        pointer-events: none;
+      }
+      @media print {
+        .MuiButtonBase-root {
+          -webkit-print-color-adjust: exact;
+        }
+      }
+    </style>
+    <style data-jss="" data-meta="MuiIconButton">
+      .MuiIconButton-root {
+        flex: 0 0 auto;
+        color: #fff;
+        padding: 12px;
+        overflow: visible;
+        font-size: 1.5rem;
+        text-align: center;
+        transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        border-radius: 50%;
+      }
+      .MuiIconButton-root:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+      .MuiIconButton-root.Mui-disabled {
+        color: rgba(255, 255, 255, 0.3);
+        background-color: transparent;
+      }
+      @media (hover: none) {
+        .MuiIconButton-root:hover {
+          background-color: transparent;
+        }
+      }
+      .MuiIconButton-edgeStart {
+        margin-left: -12px;
+      }
+      .MuiIconButton-sizeSmall.MuiIconButton-edgeStart {
+        margin-left: -3px;
+      }
+      .MuiIconButton-edgeEnd {
+        margin-right: -12px;
+      }
+      .MuiIconButton-sizeSmall.MuiIconButton-edgeEnd {
+        margin-right: -3px;
+      }
+      .MuiIconButton-colorInherit {
+        color: inherit;
+      }
+      .MuiIconButton-colorPrimary {
+        color: #3f51b5;
+      }
+      .MuiIconButton-colorPrimary:hover {
+        background-color: rgba(63, 81, 181, 0.08);
+      }
+      @media (hover: none) {
+        .MuiIconButton-colorPrimary:hover {
+          background-color: transparent;
+        }
+      }
+      .MuiIconButton-colorSecondary {
+        color: #f50057;
+      }
+      .MuiIconButton-colorSecondary:hover {
+        background-color: rgba(245, 0, 87, 0.08);
+      }
+      @media (hover: none) {
+        .MuiIconButton-colorSecondary:hover {
+          background-color: transparent;
+        }
+      }
+      .MuiIconButton-sizeSmall {
+        padding: 3px;
+        font-size: 1.125rem;
+      }
+      .MuiIconButton-label {
+        width: 100%;
+        display: flex;
+        align-items: inherit;
+        justify-content: inherit;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiSvgIcon">
+      .MuiSvgIcon-root {
+        fill: currentColor;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        font-size: 1.5rem;
+        transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        flex-shrink: 0;
+        user-select: none;
+      }
+      .MuiSvgIcon-colorPrimary {
+        color: #3f51b5;
+      }
+      .MuiSvgIcon-colorSecondary {
+        color: #f50057;
+      }
+      .MuiSvgIcon-colorAction {
+        color: #fff;
+      }
+      .MuiSvgIcon-colorError {
+        color: #f44336;
+      }
+      .MuiSvgIcon-colorDisabled {
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .MuiSvgIcon-fontSizeInherit {
+        font-size: inherit;
+      }
+      .MuiSvgIcon-fontSizeSmall {
+        font-size: 1.25rem;
+      }
+      .MuiSvgIcon-fontSizeLarge {
+        font-size: 2.1875rem;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiInputBase">
+      @-webkit-keyframes mui-auto-fill {
+      }
+      @-webkit-keyframes mui-auto-fill-cancel {
+      }
+      .MuiInputBase-root {
+        color: #fff;
+        cursor: text;
+        display: inline-flex;
+        position: relative;
+        font-size: 1rem;
+        box-sizing: border-box;
+        align-items: center;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.1876em;
+      }
+      .MuiInputBase-root.Mui-disabled {
+        color: rgba(255, 255, 255, 0.5);
+        cursor: default;
+      }
+      .MuiInputBase-multiline {
+        padding: 6px 0 7px;
+      }
+      .MuiInputBase-multiline.MuiInputBase-marginDense {
+        padding-top: 3px;
+      }
+      .MuiInputBase-fullWidth {
+        width: 100%;
+      }
+      .MuiInputBase-input {
+        font: inherit;
+        color: currentColor;
+        width: 100%;
+        border: 0;
+        height: 1.1876em;
+        margin: 0;
+        display: block;
+        padding: 6px 0 7px;
+        min-width: 0;
+        background: none;
+        box-sizing: content-box;
+        animation-name: mui-auto-fill-cancel;
+        letter-spacing: inherit;
+        animation-duration: 10ms;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .MuiInputBase-input::-webkit-input-placeholder {
+        color: currentColor;
+        opacity: 0.5;
+        transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      }
+      .MuiInputBase-input::-moz-placeholder {
+        color: currentColor;
+        opacity: 0.5;
+        transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      }
+      .MuiInputBase-input:-ms-input-placeholder {
+        color: currentColor;
+        opacity: 0.5;
+        transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      }
+      .MuiInputBase-input::-ms-input-placeholder {
+        color: currentColor;
+        opacity: 0.5;
+        transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      }
+      .MuiInputBase-input:focus {
+        outline: 0;
+      }
+      .MuiInputBase-input:invalid {
+        box-shadow: none;
+      }
+      .MuiInputBase-input::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      .MuiInputBase-input.Mui-disabled {
+        opacity: 1;
+      }
+      .MuiInputBase-input:-webkit-autofill {
+        animation-name: mui-auto-fill;
+        animation-duration: 5000s;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input::-webkit-input-placeholder {
+        opacity: 0 !important;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input::-moz-placeholder {
+        opacity: 0 !important;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input:-ms-input-placeholder {
+        opacity: 0 !important;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input::-ms-input-placeholder {
+        opacity: 0 !important;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input:focus::-webkit-input-placeholder {
+        opacity: 0.5;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input:focus::-moz-placeholder {
+        opacity: 0.5;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input:focus:-ms-input-placeholder {
+        opacity: 0.5;
+      }
+      label[data-shrink="false"]
+        + .MuiInputBase-formControl
+        .MuiInputBase-input:focus::-ms-input-placeholder {
+        opacity: 0.5;
+      }
+      .MuiInputBase-inputMarginDense {
+        padding-top: 3px;
+      }
+      .MuiInputBase-inputMultiline {
+        height: auto;
+        resize: none;
+        padding: 0;
+      }
+      .MuiInputBase-inputTypeSearch {
+        -moz-appearance: textfield;
+        -webkit-appearance: textfield;
+      }
+    </style>
+    <style data-jss="" data-meta="makeStyles">
+      .jss7 {
+        border: 1px solid #f6c700;
+        display: flex;
+        padding: 2px 4px;
+        align-items: center;
+        background-color: #000000;
+      }
+      .jss8 {
+        flex: 1;
+        margin-left: 8px;
+      }
+      .jss9 {
+        padding: 10px;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiCard">
+      .MuiCard-root {
+        overflow: hidden;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiCardActionArea">
+      .MuiCardActionArea-root {
+        width: 100%;
+        display: block;
+        text-align: inherit;
+      }
+      .MuiCardActionArea-root:hover .MuiCardActionArea-focusHighlight {
+        opacity: 0.08;
+      }
+      .MuiCardActionArea-root.Mui-focusVisible
+        .MuiCardActionArea-focusHighlight {
+        opacity: 0.12;
+      }
+      .MuiCardActionArea-focusHighlight {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        border-radius: inherit;
+        pointer-events: none;
+        background-color: currentcolor;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiCardActions">
+      .MuiCardActions-root {
+        display: flex;
+        padding: 8px;
+        align-items: center;
+      }
+      .MuiCardActions-spacing > :not(:first-child) {
+        margin-left: 8px;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiCardContent">
+      .MuiCardContent-root {
+        padding: 16px;
+      }
+      .MuiCardContent-root:last-child {
+        padding-bottom: 24px;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiCardMedia">
+      .MuiCardMedia-root {
+        display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .MuiCardMedia-media {
+        width: 100%;
+      }
+      .MuiCardMedia-img {
+        object-fit: cover;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiTypography">
+      .MuiTypography-root {
+        margin: 0;
+      }
+      .MuiTypography-body2 {
+        font-size: 0.875rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.43;
+      }
+      .MuiTypography-body1 {
+        font-size: 1rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+      .MuiTypography-caption {
+        font-size: 0.75rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.66;
+      }
+      .MuiTypography-button {
+        font-size: 0.875rem;
+        font-family: Comic Neue;
+        font-weight: 500;
+        line-height: 1.75;
+        text-transform: uppercase;
+      }
+      .MuiTypography-h1 {
+        font-size: 6rem;
+        font-family: Comic Neue;
+        font-weight: 300;
+        line-height: 1.167;
+      }
+      .MuiTypography-h2 {
+        font-size: 3.75rem;
+        font-family: Comic Neue;
+        font-weight: 300;
+        line-height: 1.2;
+      }
+      .MuiTypography-h3 {
+        font-size: 3rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.167;
+      }
+      .MuiTypography-h4 {
+        font-size: 2.125rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.235;
+      }
+      .MuiTypography-h5 {
+        font-size: 1.5rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.334;
+      }
+      .MuiTypography-h6 {
+        font-size: 1.25rem;
+        font-family: Comic Neue;
+        font-weight: 500;
+        line-height: 1.6;
+      }
+      .MuiTypography-subtitle1 {
+        font-size: 1rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 1.75;
+      }
+      .MuiTypography-subtitle2 {
+        font-size: 0.875rem;
+        font-family: Comic Neue;
+        font-weight: 500;
+        line-height: 1.57;
+      }
+      .MuiTypography-overline {
+        font-size: 0.75rem;
+        font-family: Comic Neue;
+        font-weight: 400;
+        line-height: 2.66;
+        text-transform: uppercase;
+      }
+      .MuiTypography-srOnly {
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+      }
+      .MuiTypography-alignLeft {
+        text-align: left;
+      }
+      .MuiTypography-alignCenter {
+        text-align: center;
+      }
+      .MuiTypography-alignRight {
+        text-align: right;
+      }
+      .MuiTypography-alignJustify {
+        text-align: justify;
+      }
+      .MuiTypography-noWrap {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .MuiTypography-gutterBottom {
+        margin-bottom: 0.35em;
+      }
+      .MuiTypography-paragraph {
+        margin-bottom: 16px;
+      }
+      .MuiTypography-colorInherit {
+        color: inherit;
+      }
+      .MuiTypography-colorPrimary {
+        color: #3f51b5;
+      }
+      .MuiTypography-colorSecondary {
+        color: #f50057;
+      }
+      .MuiTypography-colorTextPrimary {
+        color: #fff;
+      }
+      .MuiTypography-colorTextSecondary {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .MuiTypography-colorError {
+        color: #f44336;
+      }
+      .MuiTypography-displayInline {
+        display: inline;
+      }
+      .MuiTypography-displayBlock {
+        display: block;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiGrid">
+      .MuiGrid-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+      }
+      .MuiGrid-item {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .MuiGrid-zeroMinWidth {
+        min-width: 0;
+      }
+      .MuiGrid-direction-xs-column {
+        flex-direction: column;
+      }
+      .MuiGrid-direction-xs-column-reverse {
+        flex-direction: column-reverse;
+      }
+      .MuiGrid-direction-xs-row-reverse {
+        flex-direction: row-reverse;
+      }
+      .MuiGrid-wrap-xs-nowrap {
+        flex-wrap: nowrap;
+      }
+      .MuiGrid-wrap-xs-wrap-reverse {
+        flex-wrap: wrap-reverse;
+      }
+      .MuiGrid-align-items-xs-center {
+        align-items: center;
+      }
+      .MuiGrid-align-items-xs-flex-start {
+        align-items: flex-start;
+      }
+      .MuiGrid-align-items-xs-flex-end {
+        align-items: flex-end;
+      }
+      .MuiGrid-align-items-xs-baseline {
+        align-items: baseline;
+      }
+      .MuiGrid-align-content-xs-center {
+        align-content: center;
+      }
+      .MuiGrid-align-content-xs-flex-start {
+        align-content: flex-start;
+      }
+      .MuiGrid-align-content-xs-flex-end {
+        align-content: flex-end;
+      }
+      .MuiGrid-align-content-xs-space-between {
+        align-content: space-between;
+      }
+      .MuiGrid-align-content-xs-space-around {
+        align-content: space-around;
+      }
+      .MuiGrid-justify-xs-center {
+        justify-content: center;
+      }
+      .MuiGrid-justify-xs-flex-end {
+        justify-content: flex-end;
+      }
+      .MuiGrid-justify-xs-space-between {
+        justify-content: space-between;
+      }
+      .MuiGrid-justify-xs-space-around {
+        justify-content: space-around;
+      }
+      .MuiGrid-justify-xs-space-evenly {
+        justify-content: space-evenly;
+      }
+      .MuiGrid-spacing-xs-1 {
+        width: calc(100% + 8px);
+        margin: -4px;
+      }
+      .MuiGrid-spacing-xs-1 > .MuiGrid-item {
+        padding: 4px;
+      }
+      .MuiGrid-spacing-xs-2 {
+        width: calc(100% + 16px);
+        margin: -8px;
+      }
+      .MuiGrid-spacing-xs-2 > .MuiGrid-item {
+        padding: 8px;
+      }
+      .MuiGrid-spacing-xs-3 {
+        width: calc(100% + 24px);
+        margin: -12px;
+      }
+      .MuiGrid-spacing-xs-3 > .MuiGrid-item {
+        padding: 12px;
+      }
+      .MuiGrid-spacing-xs-4 {
+        width: calc(100% + 32px);
+        margin: -16px;
+      }
+      .MuiGrid-spacing-xs-4 > .MuiGrid-item {
+        padding: 16px;
+      }
+      .MuiGrid-spacing-xs-5 {
+        width: calc(100% + 40px);
+        margin: -20px;
+      }
+      .MuiGrid-spacing-xs-5 > .MuiGrid-item {
+        padding: 20px;
+      }
+      .MuiGrid-spacing-xs-6 {
+        width: calc(100% + 48px);
+        margin: -24px;
+      }
+      .MuiGrid-spacing-xs-6 > .MuiGrid-item {
+        padding: 24px;
+      }
+      .MuiGrid-spacing-xs-7 {
+        width: calc(100% + 56px);
+        margin: -28px;
+      }
+      .MuiGrid-spacing-xs-7 > .MuiGrid-item {
+        padding: 28px;
+      }
+      .MuiGrid-spacing-xs-8 {
+        width: calc(100% + 64px);
+        margin: -32px;
+      }
+      .MuiGrid-spacing-xs-8 > .MuiGrid-item {
+        padding: 32px;
+      }
+      .MuiGrid-spacing-xs-9 {
+        width: calc(100% + 72px);
+        margin: -36px;
+      }
+      .MuiGrid-spacing-xs-9 > .MuiGrid-item {
+        padding: 36px;
+      }
+      .MuiGrid-spacing-xs-10 {
+        width: calc(100% + 80px);
+        margin: -40px;
+      }
+      .MuiGrid-spacing-xs-10 > .MuiGrid-item {
+        padding: 40px;
+      }
+      .MuiGrid-grid-xs-auto {
+        flex-grow: 0;
+        max-width: none;
+        flex-basis: auto;
+      }
+      .MuiGrid-grid-xs-true {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+      .MuiGrid-grid-xs-1 {
+        flex-grow: 0;
+        max-width: 8.333333%;
+        flex-basis: 8.333333%;
+      }
+      .MuiGrid-grid-xs-2 {
+        flex-grow: 0;
+        max-width: 16.666667%;
+        flex-basis: 16.666667%;
+      }
+      .MuiGrid-grid-xs-3 {
+        flex-grow: 0;
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+      .MuiGrid-grid-xs-4 {
+        flex-grow: 0;
+        max-width: 33.333333%;
+        flex-basis: 33.333333%;
+      }
+      .MuiGrid-grid-xs-5 {
+        flex-grow: 0;
+        max-width: 41.666667%;
+        flex-basis: 41.666667%;
+      }
+      .MuiGrid-grid-xs-6 {
+        flex-grow: 0;
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+      .MuiGrid-grid-xs-7 {
+        flex-grow: 0;
+        max-width: 58.333333%;
+        flex-basis: 58.333333%;
+      }
+      .MuiGrid-grid-xs-8 {
+        flex-grow: 0;
+        max-width: 66.666667%;
+        flex-basis: 66.666667%;
+      }
+      .MuiGrid-grid-xs-9 {
+        flex-grow: 0;
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+      .MuiGrid-grid-xs-10 {
+        flex-grow: 0;
+        max-width: 83.333333%;
+        flex-basis: 83.333333%;
+      }
+      .MuiGrid-grid-xs-11 {
+        flex-grow: 0;
+        max-width: 91.666667%;
+        flex-basis: 91.666667%;
+      }
+      .MuiGrid-grid-xs-12 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+      @media (min-width: 600px) {
+        .MuiGrid-grid-sm-auto {
+          flex-grow: 0;
+          max-width: none;
+          flex-basis: auto;
+        }
+        .MuiGrid-grid-sm-true {
+          flex-grow: 1;
+          max-width: 100%;
+          flex-basis: 0;
+        }
+        .MuiGrid-grid-sm-1 {
+          flex-grow: 0;
+          max-width: 8.333333%;
+          flex-basis: 8.333333%;
+        }
+        .MuiGrid-grid-sm-2 {
+          flex-grow: 0;
+          max-width: 16.666667%;
+          flex-basis: 16.666667%;
+        }
+        .MuiGrid-grid-sm-3 {
+          flex-grow: 0;
+          max-width: 25%;
+          flex-basis: 25%;
+        }
+        .MuiGrid-grid-sm-4 {
+          flex-grow: 0;
+          max-width: 33.333333%;
+          flex-basis: 33.333333%;
+        }
+        .MuiGrid-grid-sm-5 {
+          flex-grow: 0;
+          max-width: 41.666667%;
+          flex-basis: 41.666667%;
+        }
+        .MuiGrid-grid-sm-6 {
+          flex-grow: 0;
+          max-width: 50%;
+          flex-basis: 50%;
+        }
+        .MuiGrid-grid-sm-7 {
+          flex-grow: 0;
+          max-width: 58.333333%;
+          flex-basis: 58.333333%;
+        }
+        .MuiGrid-grid-sm-8 {
+          flex-grow: 0;
+          max-width: 66.666667%;
+          flex-basis: 66.666667%;
+        }
+        .MuiGrid-grid-sm-9 {
+          flex-grow: 0;
+          max-width: 75%;
+          flex-basis: 75%;
+        }
+        .MuiGrid-grid-sm-10 {
+          flex-grow: 0;
+          max-width: 83.333333%;
+          flex-basis: 83.333333%;
+        }
+        .MuiGrid-grid-sm-11 {
+          flex-grow: 0;
+          max-width: 91.666667%;
+          flex-basis: 91.666667%;
+        }
+        .MuiGrid-grid-sm-12 {
+          flex-grow: 0;
+          max-width: 100%;
+          flex-basis: 100%;
+        }
+      }
+      @media (min-width: 960px) {
+        .MuiGrid-grid-md-auto {
+          flex-grow: 0;
+          max-width: none;
+          flex-basis: auto;
+        }
+        .MuiGrid-grid-md-true {
+          flex-grow: 1;
+          max-width: 100%;
+          flex-basis: 0;
+        }
+        .MuiGrid-grid-md-1 {
+          flex-grow: 0;
+          max-width: 8.333333%;
+          flex-basis: 8.333333%;
+        }
+        .MuiGrid-grid-md-2 {
+          flex-grow: 0;
+          max-width: 16.666667%;
+          flex-basis: 16.666667%;
+        }
+        .MuiGrid-grid-md-3 {
+          flex-grow: 0;
+          max-width: 25%;
+          flex-basis: 25%;
+        }
+        .MuiGrid-grid-md-4 {
+          flex-grow: 0;
+          max-width: 33.333333%;
+          flex-basis: 33.333333%;
+        }
+        .MuiGrid-grid-md-5 {
+          flex-grow: 0;
+          max-width: 41.666667%;
+          flex-basis: 41.666667%;
+        }
+        .MuiGrid-grid-md-6 {
+          flex-grow: 0;
+          max-width: 50%;
+          flex-basis: 50%;
+        }
+        .MuiGrid-grid-md-7 {
+          flex-grow: 0;
+          max-width: 58.333333%;
+          flex-basis: 58.333333%;
+        }
+        .MuiGrid-grid-md-8 {
+          flex-grow: 0;
+          max-width: 66.666667%;
+          flex-basis: 66.666667%;
+        }
+        .MuiGrid-grid-md-9 {
+          flex-grow: 0;
+          max-width: 75%;
+          flex-basis: 75%;
+        }
+        .MuiGrid-grid-md-10 {
+          flex-grow: 0;
+          max-width: 83.333333%;
+          flex-basis: 83.333333%;
+        }
+        .MuiGrid-grid-md-11 {
+          flex-grow: 0;
+          max-width: 91.666667%;
+          flex-basis: 91.666667%;
+        }
+        .MuiGrid-grid-md-12 {
+          flex-grow: 0;
+          max-width: 100%;
+          flex-basis: 100%;
+        }
+      }
+      @media (min-width: 1280px) {
+        .MuiGrid-grid-lg-auto {
+          flex-grow: 0;
+          max-width: none;
+          flex-basis: auto;
+        }
+        .MuiGrid-grid-lg-true {
+          flex-grow: 1;
+          max-width: 100%;
+          flex-basis: 0;
+        }
+        .MuiGrid-grid-lg-1 {
+          flex-grow: 0;
+          max-width: 8.333333%;
+          flex-basis: 8.333333%;
+        }
+        .MuiGrid-grid-lg-2 {
+          flex-grow: 0;
+          max-width: 16.666667%;
+          flex-basis: 16.666667%;
+        }
+        .MuiGrid-grid-lg-3 {
+          flex-grow: 0;
+          max-width: 25%;
+          flex-basis: 25%;
+        }
+        .MuiGrid-grid-lg-4 {
+          flex-grow: 0;
+          max-width: 33.333333%;
+          flex-basis: 33.333333%;
+        }
+        .MuiGrid-grid-lg-5 {
+          flex-grow: 0;
+          max-width: 41.666667%;
+          flex-basis: 41.666667%;
+        }
+        .MuiGrid-grid-lg-6 {
+          flex-grow: 0;
+          max-width: 50%;
+          flex-basis: 50%;
+        }
+        .MuiGrid-grid-lg-7 {
+          flex-grow: 0;
+          max-width: 58.333333%;
+          flex-basis: 58.333333%;
+        }
+        .MuiGrid-grid-lg-8 {
+          flex-grow: 0;
+          max-width: 66.666667%;
+          flex-basis: 66.666667%;
+        }
+        .MuiGrid-grid-lg-9 {
+          flex-grow: 0;
+          max-width: 75%;
+          flex-basis: 75%;
+        }
+        .MuiGrid-grid-lg-10 {
+          flex-grow: 0;
+          max-width: 83.333333%;
+          flex-basis: 83.333333%;
+        }
+        .MuiGrid-grid-lg-11 {
+          flex-grow: 0;
+          max-width: 91.666667%;
+          flex-basis: 91.666667%;
+        }
+        .MuiGrid-grid-lg-12 {
+          flex-grow: 0;
+          max-width: 100%;
+          flex-basis: 100%;
+        }
+      }
+      @media (min-width: 1920px) {
+        .MuiGrid-grid-xl-auto {
+          flex-grow: 0;
+          max-width: none;
+          flex-basis: auto;
+        }
+        .MuiGrid-grid-xl-true {
+          flex-grow: 1;
+          max-width: 100%;
+          flex-basis: 0;
+        }
+        .MuiGrid-grid-xl-1 {
+          flex-grow: 0;
+          max-width: 8.333333%;
+          flex-basis: 8.333333%;
+        }
+        .MuiGrid-grid-xl-2 {
+          flex-grow: 0;
+          max-width: 16.666667%;
+          flex-basis: 16.666667%;
+        }
+        .MuiGrid-grid-xl-3 {
+          flex-grow: 0;
+          max-width: 25%;
+          flex-basis: 25%;
+        }
+        .MuiGrid-grid-xl-4 {
+          flex-grow: 0;
+          max-width: 33.333333%;
+          flex-basis: 33.333333%;
+        }
+        .MuiGrid-grid-xl-5 {
+          flex-grow: 0;
+          max-width: 41.666667%;
+          flex-basis: 41.666667%;
+        }
+        .MuiGrid-grid-xl-6 {
+          flex-grow: 0;
+          max-width: 50%;
+          flex-basis: 50%;
+        }
+        .MuiGrid-grid-xl-7 {
+          flex-grow: 0;
+          max-width: 58.333333%;
+          flex-basis: 58.333333%;
+        }
+        .MuiGrid-grid-xl-8 {
+          flex-grow: 0;
+          max-width: 66.666667%;
+          flex-basis: 66.666667%;
+        }
+        .MuiGrid-grid-xl-9 {
+          flex-grow: 0;
+          max-width: 75%;
+          flex-basis: 75%;
+        }
+        .MuiGrid-grid-xl-10 {
+          flex-grow: 0;
+          max-width: 83.333333%;
+          flex-basis: 83.333333%;
+        }
+        .MuiGrid-grid-xl-11 {
+          flex-grow: 0;
+          max-width: 91.666667%;
+          flex-basis: 91.666667%;
+        }
+        .MuiGrid-grid-xl-12 {
+          flex-grow: 0;
+          max-width: 100%;
+          flex-basis: 100%;
+        }
+      }
+    </style>
+    <script charset="utf-8" src="/static/js/0.f5b63e01.chunk.js"></script>
+    <script charset="utf-8" src="/static/js/4.fe11bf28.chunk.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/css/5.6f2460be.chunk.css"
+    />
+    <script charset="utf-8" src="/static/js/5.2748e804.chunk.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/css/6.0e81f16a.chunk.css"
+    />
+    <script charset="utf-8" src="/static/js/6.eaee5ec0.chunk.js"></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div class="App">
+        <div class="MuiPaper-root Layout_root__x_cjQ MuiPaper-elevation1">
+          <div class="AppHeader_root__gzpoA">
+            <button
+              class="MuiButtonBase-root MuiIconButton-root AppHeader_backBtn__1Tivf"
+              tabindex="0"
+              type="button"
+              aria-label="back"
+              style="visibility: hidden"
+            >
+              <span class="MuiIconButton-label"
+                ><svg
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"
+                  ></path></svg></span
+              ><span class="MuiTouchRipple-root"></span></button
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 575 289.83"
+              width="100"
+              height="48"
+              class="AppHeader_appLogo__1aQjb"
+            >
+              <defs>
+                <path
+                  d="M575 24.91C573.44 12.15 563.97 1.98 551.91 0C499.05 0 76.18 0 23.32 0C10.11 2.17 0 14.16 0 28.61C0 51.84 0 237.64 0 260.86C0 276.86 12.37 289.83 27.64 289.83C79.63 289.83 495.6 289.83 547.59 289.83C561.65 289.83 573.26 278.82 575 264.57C575 216.64 575 48.87 575 24.91Z"
+                  id="d1pwhf9wy2"
+                ></path>
+                <path
+                  d="M69.35 58.24L114.98 58.24L114.98 233.89L69.35 233.89L69.35 58.24Z"
+                  id="g5jjnq26yS"
+                ></path>
+                <path
+                  d="M201.2 139.15C197.28 112.38 195.1 97.5 194.67 94.53C192.76 80.2 190.94 67.73 189.2 57.09C185.25 57.09 165.54 57.09 130.04 57.09L130.04 232.74L170.01 232.74L170.15 116.76L186.97 232.74L215.44 232.74L231.39 114.18L231.54 232.74L271.38 232.74L271.38 57.09L211.77 57.09L201.2 139.15Z"
+                  id="i3Prh1JpXt"
+                ></path>
+                <path
+                  d="M346.71 93.63C347.21 95.87 347.47 100.95 347.47 108.89C347.47 115.7 347.47 170.18 347.47 176.99C347.47 188.68 346.71 195.84 345.2 198.48C343.68 201.12 339.64 202.43 333.09 202.43C333.09 190.9 333.09 98.66 333.09 87.13C338.06 87.13 341.45 87.66 343.25 88.7C345.05 89.75 346.21 91.39 346.71 93.63ZM367.32 230.95C372.75 229.76 377.31 227.66 381.01 224.67C384.7 221.67 387.29 217.52 388.77 212.21C390.26 206.91 391.14 196.38 391.14 180.63C391.14 174.47 391.14 125.12 391.14 118.95C391.14 102.33 390.49 91.19 389.48 85.53C388.46 79.86 385.93 74.71 381.88 70.09C377.82 65.47 371.9 62.15 364.12 60.13C356.33 58.11 343.63 57.09 321.54 57.09C319.27 57.09 307.93 57.09 287.5 57.09L287.5 232.74L342.78 232.74C355.52 232.34 363.7 231.75 367.32 230.95Z"
+                  id="a4ov9rRGQm"
+                ></path>
+                <path
+                  d="M464.76 204.7C463.92 206.93 460.24 208.06 457.46 208.06C454.74 208.06 452.93 206.98 452.01 204.81C451.09 202.65 450.64 197.72 450.64 190C450.64 185.36 450.64 148.22 450.64 143.58C450.64 135.58 451.04 130.59 451.85 128.6C452.65 126.63 454.41 125.63 457.13 125.63C459.91 125.63 463.64 126.76 464.6 129.03C465.55 131.3 466.03 136.15 466.03 143.58C466.03 146.58 466.03 161.58 466.03 188.59C465.74 197.84 465.32 203.21 464.76 204.7ZM406.68 231.21L447.76 231.21C449.47 224.5 450.41 220.77 450.6 220.02C454.32 224.52 458.41 227.9 462.9 230.14C467.37 232.39 474.06 233.51 479.24 233.51C486.45 233.51 492.67 231.62 497.92 227.83C503.16 224.05 506.5 219.57 507.92 214.42C509.34 209.26 510.05 201.42 510.05 190.88C510.05 185.95 510.05 146.53 510.05 141.6C510.05 131 509.81 124.08 509.34 120.83C508.87 117.58 507.47 114.27 505.14 110.88C502.81 107.49 499.42 104.86 494.98 102.98C490.54 101.1 485.3 100.16 479.26 100.16C474.01 100.16 467.29 101.21 462.81 103.28C458.34 105.35 454.28 108.49 450.64 112.7C450.64 108.89 450.64 89.85 450.64 55.56L406.68 55.56L406.68 231.21Z"
+                  id="fk968BpsX"
+                ></path>
+              </defs>
+              <g>
+                <g>
+                  <g>
+                    <use
+                      xlink:href="#d1pwhf9wy2"
+                      opacity="1"
+                      fill="#f6c700"
+                      fill-opacity="1"
+                    ></use>
+                    <g>
+                      <use
+                        xlink:href="#d1pwhf9wy2"
+                        opacity="1"
+                        fill-opacity="0"
+                        stroke="#000000"
+                        stroke-width="1"
+                        stroke-opacity="0"
+                      ></use>
+                    </g>
+                  </g>
+                  <g>
+                    <use
+                      xlink:href="#g5jjnq26yS"
+                      opacity="1"
+                      fill="#000000"
+                      fill-opacity="1"
+                    ></use>
+                    <g>
+                      <use
+                        xlink:href="#g5jjnq26yS"
+                        opacity="1"
+                        fill-opacity="0"
+                        stroke="#000000"
+                        stroke-width="1"
+                        stroke-opacity="0"
+                      ></use>
+                    </g>
+                  </g>
+                  <g>
+                    <use
+                      xlink:href="#i3Prh1JpXt"
+                      opacity="1"
+                      fill="#000000"
+                      fill-opacity="1"
+                    ></use>
+                    <g>
+                      <use
+                        xlink:href="#i3Prh1JpXt"
+                        opacity="1"
+                        fill-opacity="0"
+                        stroke="#000000"
+                        stroke-width="1"
+                        stroke-opacity="0"
+                      ></use>
+                    </g>
+                  </g>
+                  <g>
+                    <use
+                      xlink:href="#a4ov9rRGQm"
+                      opacity="1"
+                      fill="#000000"
+                      fill-opacity="1"
+                    ></use>
+                    <g>
+                      <use
+                        xlink:href="#a4ov9rRGQm"
+                        opacity="1"
+                        fill-opacity="0"
+                        stroke="#000000"
+                        stroke-width="1"
+                        stroke-opacity="0"
+                      ></use>
+                    </g>
+                  </g>
+                  <g>
+                    <use
+                      xlink:href="#fk968BpsX"
+                      opacity="1"
+                      fill="#000000"
+                      fill-opacity="1"
+                    ></use>
+                    <g>
+                      <use
+                        xlink:href="#fk968BpsX"
+                        opacity="1"
+                        fill-opacity="0"
+                        stroke="#000000"
+                        stroke-width="1"
+                        stroke-opacity="0"
+                      ></use>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="Home_root__xzpXq">
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-center"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-center"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                  >
+                    <div
+                      class="MuiPaper-root jss7 Home_searchBox__3uNcw MuiPaper-elevation1 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiInputBase-root jss8 MuiInputBase-fullWidth"
+                      >
+                        <input
+                          placeholder="Search for a movie"
+                          type="text"
+                          class="MuiInputBase-input"
+                          value=""
+                        />
+                      </div>
+                      <button
+                        class="MuiButtonBase-root MuiIconButton-root jss9"
+                        tabindex="0"
+                        type="submit"
+                      >
+                        <span class="MuiIconButton-label"
+                          ><svg
+                            class="MuiSvgIcon-root"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                            ></path></svg></span
+                        ><span class="MuiTouchRipple-root"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root Home_movieListContainer__1Z3P4 MuiGrid-item MuiGrid-grid-xs-12"
+                >
+
+                <!-- cards section -->
+                  <div class="infinite-scroll-component__outerdiv">
+                    <div
+                      class="infinite-scroll-component"
+                      style="height: auto; overflow: hidden"
+                    >
+                      <div
+                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                      >
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="https://m.media-amazon.com/images/M/MV5BYTE1ZTBlYzgtNmMyNS00ZTQ2LWE4NjEtZjUxNDJkNTg2MzlhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+                                alt="I Am Legend"
+                                height="400"
+                                title="I Am Legend"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>I Am Legend</h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2007</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="https://m.media-amazon.com/images/M/MV5BMDY5YzM2NzctNTk5Ny00YTllLWJmZjQtYjAzMTczNGY4MTUwXkEyXkFqcGdeQXVyMTEyMDcwNw@@._V1_SX300.jpg"
+                                alt="I Am Legend: Awakening - Story 2: Isolation"
+                                height="400"
+                                title="I Am Legend: Awakening - Story 2: Isolation"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>
+                                  I Am Legend: Awakening - Story 2: Isolation
+                                </h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2007</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="https://m.media-amazon.com/images/M/MV5BNzRlODk3MmEtNjcyNy00ZWZkLWI4MGEtZmNlY2Y2MjNlNDIwXkEyXkFqcGdeQXVyNjc5ODUzODU@._V1_SX300.jpg"
+                                alt="I Am Legend: Awakening - Story 1: Sacrificing the Few for the Many"
+                                height="400"
+                                title="I Am Legend: Awakening - Story 1: Sacrificing the Few for the Many"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>
+                                  I Am Legend: Awakening - Story 1: Sacrificing
+                                  the Few for the Many
+                                </h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2008</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="https://m.media-amazon.com/images/M/MV5BNzEwY2JlMWQtYTlkMy00OWE1LThmZDItNzU0NDM1ZTk3Zjk1XkEyXkFqcGdeQXVyMTEyMDcwNw@@._V1_SX300.jpg"
+                                alt="I Am Legend: Awakening - Story 3: Shelter"
+                                height="400"
+                                title="I Am Legend: Awakening - Story 3: Shelter"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>
+                                  I Am Legend: Awakening - Story 3: Shelter
+                                </h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2008</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="https://m.media-amazon.com/images/M/MV5BODg3ZmFkZjYtNDZiMS00YWQxLWI0N2YtZmIwMzQ2NjU0MGFmXkEyXkFqcGdeQXVyMTEyMDcwNw@@._V1_SX300.jpg"
+                                alt="I Am Legend: Awakening - Story 4: Death as a Gift"
+                                height="400"
+                                title="I Am Legend: Awakening - Story 4: Death as a Gift"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>
+                                  I Am Legend: Awakening - Story 4: Death as a
+                                  Gift
+                                </h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2008</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="N/A"
+                                alt="I Am Legend"
+                                height="400"
+                                title="I Am Legend"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>I Am Legend</h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;1994</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="https://m.media-amazon.com/images/M/MV5BYWI5ZTZlNjAtYmE2Yy00MGU2LTk1ZWQtNGYzMWYzYjk5ZDllXkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_SX300.jpg"
+                                alt="I Am Legend: Survival"
+                                height="400"
+                                title="I Am Legend: Survival"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>I Am Legend: Survival</h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2007</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="N/A"
+                                alt="Cautionary Tale: The Science of 'I Am Legend'"
+                                height="400"
+                                title="Cautionary Tale: The Science of 'I Am Legend'"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>
+                                  Cautionary Tale: The Science of 'I Am Legend'
+                                </h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2008</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="N/A"
+                                alt="Creating 'I Am Legend'"
+                                height="400"
+                                title="Creating 'I Am Legend'"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>Creating 'I Am Legend'</h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2008</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root MovieCard_root__2FC87 MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <button
+                              class="MuiButtonBase-root MuiCardActionArea-root MovieCard_cardArea__d_8hB"
+                              tabindex="0"
+                              type="button"
+                            >
+                              <img
+                                class="MuiCardMedia-root MovieCard_poster__1zE4I MuiCardMedia-media MuiCardMedia-img"
+                                src="https://m.media-amazon.com/images/M/MV5BMzU4NjIzMjItNzdjMi00NDM5LWI2ZmUtMTdlMGYzMWU3Y2E3XkEyXkFqcGdeQXVyMTIxNzA4OA@@._V1_SX300.jpg"
+                                alt="I Am Legend: Done in 60 Seconds"
+                                height="400"
+                                title="I Am Legend: Done in 60 Seconds"
+                              />
+                              <div
+                                class="MuiCardContent-root MovieCard_overText__pjgb5"
+                              >
+                                <h2>I Am Legend: Done in 60 Seconds</h2>
+                              </div>
+                              <span
+                                class="MuiCardActionArea-focusHighlight"
+                              ></span
+                              ><span class="MuiTouchRipple-root"></span>
+                            </button>
+                            <div
+                              class="MuiCardActions-root MovieCard_actionsContainer__3CedU MuiCardActions-spacing"
+                            >
+                              <i
+                                class="MuiTypography-root MovieCard_yearSection__2nLRr MuiTypography-body1 MuiTypography-gutterBottom"
+                                ><svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                                  ></path></svg
+                                >&nbsp;2008</i
+                              ><button
+                                class="MuiButtonBase-root MuiIconButton-root"
+                                tabindex="0"
+                                type="button"
+                                aria-label="add to favorites"
+                              >
+                                <span class="MuiIconButton-label"
+                                  ><svg
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    ></path></svg></span
+                                ><span class="MuiTouchRipple-root"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      !(function (e) {
+        function t(t) {
+          for (
+            var n, o, i = t[0], c = t[1], l = t[2], f = 0, p = [];
+            f < i.length;
+            f++
+          )
+            (o = i[f]),
+              Object.prototype.hasOwnProperty.call(a, o) &&
+                a[o] &&
+                p.push(a[o][0]),
+              (a[o] = 0);
+          for (n in c)
+            Object.prototype.hasOwnProperty.call(c, n) && (e[n] = c[n]);
+          for (s && s(t); p.length; ) p.shift()();
+          return u.push.apply(u, l || []), r();
+        }
+        function r() {
+          for (var e, t = 0; t < u.length; t++) {
+            for (var r = u[t], n = !0, o = 1; o < r.length; o++) {
+              var c = r[o];
+              0 !== a[c] && (n = !1);
+            }
+            n && (u.splice(t--, 1), (e = i((i.s = r[0]))));
+          }
+          return e;
+        }
+        var n = {},
+          o = { 2: 0 },
+          a = { 2: 0 },
+          u = [];
+        function i(t) {
+          if (n[t]) return n[t].exports;
+          var r = (n[t] = { i: t, l: !1, exports: {} });
+          return e[t].call(r.exports, r, r.exports, i), (r.l = !0), r.exports;
+        }
+        (i.e = function (e) {
+          var t = [];
+          o[e]
+            ? t.push(o[e])
+            : 0 !== o[e] &&
+              { 5: 1, 6: 1 }[e] &&
+              t.push(
+                (o[e] = new Promise(function (t, r) {
+                  for (
+                    var n =
+                        "static/css/" +
+                        ({}[e] || e) +
+                        "." +
+                        {
+                          0: "31d6cfe0",
+                          4: "31d6cfe0",
+                          5: "6f2460be",
+                          6: "0e81f16a",
+                          7: "31d6cfe0",
+                        }[e] +
+                        ".chunk.css",
+                      a = i.p + n,
+                      u = document.getElementsByTagName("link"),
+                      c = 0;
+                    c < u.length;
+                    c++
+                  ) {
+                    var l =
+                      (s = u[c]).getAttribute("data-href") ||
+                      s.getAttribute("href");
+                    if ("stylesheet" === s.rel && (l === n || l === a))
+                      return t();
+                  }
+                  var f = document.getElementsByTagName("style");
+                  for (c = 0; c < f.length; c++) {
+                    var s;
+                    if (
+                      (l = (s = f[c]).getAttribute("data-href")) === n ||
+                      l === a
+                    )
+                      return t();
+                  }
+                  var p = document.createElement("link");
+                  (p.rel = "stylesheet"),
+                    (p.type = "text/css"),
+                    (p.onload = t),
+                    (p.onerror = function (t) {
+                      var n = (t && t.target && t.target.src) || a,
+                        u = new Error(
+                          "Loading CSS chunk " + e + " failed.\n(" + n + ")"
+                        );
+                      (u.code = "CSS_CHUNK_LOAD_FAILED"),
+                        (u.request = n),
+                        delete o[e],
+                        p.parentNode.removeChild(p),
+                        r(u);
+                    }),
+                    (p.href = a),
+                    document.getElementsByTagName("head")[0].appendChild(p);
+                }).then(function () {
+                  o[e] = 0;
+                }))
+              );
+          var r = a[e];
+          if (0 !== r)
+            if (r) t.push(r[2]);
+            else {
+              var n = new Promise(function (t, n) {
+                r = a[e] = [t, n];
+              });
+              t.push((r[2] = n));
+              var u,
+                c = document.createElement("script");
+              (c.charset = "utf-8"),
+                (c.timeout = 120),
+                i.nc && c.setAttribute("nonce", i.nc),
+                (c.src = (function (e) {
+                  return (
+                    i.p +
+                    "static/js/" +
+                    ({}[e] || e) +
+                    "." +
+                    {
+                      0: "f5b63e01",
+                      4: "fe11bf28",
+                      5: "2748e804",
+                      6: "eaee5ec0",
+                      7: "523e1ca0",
+                    }[e] +
+                    ".chunk.js"
+                  );
+                })(e));
+              var l = new Error();
+              u = function (t) {
+                (c.onerror = c.onload = null), clearTimeout(f);
+                var r = a[e];
+                if (0 !== r) {
+                  if (r) {
+                    var n = t && ("load" === t.type ? "missing" : t.type),
+                      o = t && t.target && t.target.src;
+                    (l.message =
+                      "Loading chunk " +
+                      e +
+                      " failed.\n(" +
+                      n +
+                      ": " +
+                      o +
+                      ")"),
+                      (l.name = "ChunkLoadError"),
+                      (l.type = n),
+                      (l.request = o),
+                      r[1](l);
+                  }
+                  a[e] = void 0;
+                }
+              };
+              var f = setTimeout(function () {
+                u({ type: "timeout", target: c });
+              }, 12e4);
+              (c.onerror = c.onload = u), document.head.appendChild(c);
+            }
+          return Promise.all(t);
+        }),
+          (i.m = e),
+          (i.c = n),
+          (i.d = function (e, t, r) {
+            i.o(e, t) ||
+              Object.defineProperty(e, t, { enumerable: !0, get: r });
+          }),
+          (i.r = function (e) {
+            "undefined" != typeof Symbol &&
+              Symbol.toStringTag &&
+              Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+              Object.defineProperty(e, "__esModule", { value: !0 });
+          }),
+          (i.t = function (e, t) {
+            if ((1 & t && (e = i(e)), 8 & t)) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var r = Object.create(null);
+            if (
+              (i.r(r),
+              Object.defineProperty(r, "default", { enumerable: !0, value: e }),
+              2 & t && "string" != typeof e)
+            )
+              for (var n in e)
+                i.d(
+                  r,
+                  n,
+                  function (t) {
+                    return e[t];
+                  }.bind(null, n)
+                );
+            return r;
+          }),
+          (i.n = function (e) {
+            var t =
+              e && e.__esModule
+                ? function () {
+                    return e.default;
+                  }
+                : function () {
+                    return e;
+                  };
+            return i.d(t, "a", t), t;
+          }),
+          (i.o = function (e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+          }),
+          (i.p = "/"),
+          (i.oe = function (e) {
+            throw (console.error(e), e);
+          });
+        var c = (this["webpackJsonpreact-query-movies-app"] =
+            this["webpackJsonpreact-query-movies-app"] || []),
+          l = c.push.bind(c);
+        (c.push = t), (c = c.slice());
+        for (var f = 0; f < c.length; f++) t(c[f]);
+        var s = l;
+        r();
+      })([]);
+    </script>
+    <script src="/static/js/3.03094784.chunk.js"></script>
+    <script src="/static/js/main.acdd7d6b.chunk.js"></script>
+  </body>
+</html>
