@@ -79,16 +79,16 @@ function App() {
       item.Title.match(new RegExp(movieName, "i"))
     ); //option 1: includes, works
     // const myMovies=data.filter(item => item.Title.match(new RegExp(`\\b${movieName}\\b`, 'i'))); // option 2: search word, works
+    
     /* way 2: includes(), works*/
     // const myMovies = data.filter((item) =>
     //   item.Title.toLowerCase().includes(movieName.toLowerCase())
     // );
+    
     /* way 3: indexOf(), works */
     //   const myMovies = data.filter((item) =>
     //   item.Title.toLowerCase().indexOf(movieName.toLowerCase()) !== -1
     // );
-
-    console.log("myMovies:", myMovies);
     setFilteredData(myMovies);
   }, [movieName]);
 
@@ -114,9 +114,8 @@ function App() {
               <Cards
                 data={movieData}
                 handleDetails={(e) => {
-                  console.log("you clicked me?:");
                   const index= e.target.closest('button').value;
-                console.log("my-index:",index);
+                // console.log("my-index:",index);
                 setMyMovieDetail(data[index]);
                 }}
               />
