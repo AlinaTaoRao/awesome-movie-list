@@ -1,8 +1,8 @@
 import "./styles.css";
 import { Link } from "react-router-dom";
-import { movieDetail } from "../../data.js"; // way 1 for details feature: global var
+import { data, movieDetail } from "../../data.js"; // way 1 for details feature: global var
 
-/* way 1 for details feature: global var*/
+/* way 1 for details feature: global var, works*/
 // export const Cards = ({ data }) => {
 //   // console.log("data: ", data);
 
@@ -55,19 +55,28 @@ import { movieDetail } from "../../data.js"; // way 1 for details feature: globa
 // };
 
 /* way 2 for details feature: name or value attribute */
-export const Cards = ({ data, handleDetails }) => {
+export const Cards = ({ mData, handleDetails }) => {
   // console.log("data: ", data);
+ 
+  /* gather and store filtered movies' index  */
+  const filteredIndex = [];
+  mData.forEach((movie) => {
+    if (data.indexOf(movie) !== -1) {
+      filteredIndex.push(data.indexOf(movie));
+      // console.log("filteredIndex:", filteredIndex);
+    }
+  });
 
   return (
     <div className="cards-container">
-      {data.map((movie, index) => (
+      {mData.map((movie, index) => (
         <div key={`${index}-${movie.Title}`} className="movie-card">
           <h2 className="movie-title">{movie.Title}</h2>
           <Link to="/details">
             <button
               className="btn-poster"
-              name={index}
-              value={index}
+              name={filteredIndex[index]}
+              value={filteredIndex[index]}
               onClick={handleDetails}
             >
               <img

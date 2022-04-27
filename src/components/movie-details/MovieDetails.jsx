@@ -1,7 +1,7 @@
 import "./styles.css";
 
 export const MovieDetails = ({ movie }) => {
-  console.log("MovieDetails-movie:", movie);
+  // console.log("movie details:", movie);
 
   return (
     <div className="details-container">
