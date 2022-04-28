@@ -13,6 +13,8 @@ body,
   font-family: "Comic Neue", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: rgba(60, 60, 60, 0.9);
 }
 
 .App {
