@@ -54,10 +54,9 @@ import { data, movieDetail } from "../data.js";
 
 /* way 2: for details feature, name or value attribute , works*/
 export const MovieList = ({ mData, handleDetails }) => {
-
   /* gather and store filtered movies' index  */
   const filteredIndex = [];
- mData.forEach((movie) => {
+  mData.forEach((movie) => {
     if (data.indexOf(movie) !== -1) {
       filteredIndex.push(data.indexOf(movie));
       // console.log("filteredIndex:", filteredIndex);
@@ -69,7 +68,7 @@ export const MovieList = ({ mData, handleDetails }) => {
       {mData.map((movie, index) => (
         <div key={`${index}-${movie.Title}`} className="movie-card">
           <h2 className="movie-title">{movie.Title}</h2>
-          <Link to="/details">
+          <Link to={`/${movie.imdbID}`}>
             <button
               className="btn-poster"
               name={filteredIndex[index]}

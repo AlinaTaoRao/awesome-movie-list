@@ -121,7 +121,7 @@ function App() {
           />
           <Route
             exact
-            path="/details"
+            path="/:imdbID"
             element={<MovieDetails movie={myMovieDetail} />}
           />
         </Routes>
