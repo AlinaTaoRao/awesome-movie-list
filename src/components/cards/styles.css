@@ -5,6 +5,7 @@
 .movie-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
 
   width: 80%;
@@ -15,14 +16,16 @@
 
 .movie-list .movie-card {
   flex: 1;
+  flex-grow: 0;
 
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 .movie-title {
   font-size: 1.2rem;
   color: bisque;
   padding-left: 60px;
+  margin: 5px auto;
 }
 
 img {
@@ -32,7 +35,6 @@ img {
 }
 
 .poster {
-  /* position: relative; */
   transition: all 0.5s ease-in-out;
 }
 
