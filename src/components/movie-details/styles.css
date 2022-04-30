@@ -1,7 +1,22 @@
-.details-container{
+.details-container {
+    color: #fff;
+    background-color: rgba(rgb(40, 37, 37), green, blue, alpha);
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    column-count: 2;
-    align-items: stretch;
+    gap: 2rem;
+    line-height: 1.8;
+
 }
+
+.details-container >* {
+    flex-grow: auto;
+}
+
+.columns {
+    display: flex;
+    gap: 1rem;
+}
+
+.columns >* {
+    flex: 1;
+}
+

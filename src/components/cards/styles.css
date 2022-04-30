@@ -5,21 +5,23 @@
 .movie-list {
   display: flex;
   flex-wrap: wrap;
+  gap: 1.5rem;
+
   width: 80%;
   margin-top: 30px;
   align-self: center;
   background-color: rgb(90, 90, 90);
 }
 
-.movie-card {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+.movie-list .movie-card {
+  flex: 1;
+
   margin-top: 20px;
 }
 
 .movie-title {
   font-size: 1.2rem;
+  color: bisque;
   padding-left: 60px;
 }
 
