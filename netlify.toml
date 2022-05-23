@@ -34,9 +34,3 @@
 
 [context."features/branch"]
   command = "gulp"
-
-
-
-[build]
-  command = "yarn build && yarn export"
-  publish = "_site"
