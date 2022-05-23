@@ -17,5 +17,3 @@ Click a movie poster then movie detail will display.
 ### Back to Home
 
 Click the IMDb icon then you'll go back to home.
-
-
