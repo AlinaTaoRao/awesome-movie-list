@@ -122,7 +122,7 @@ function App() {
             }
           />
                 <Route
-            path="/my-movie-list"
+            path="/awesome-movie-list"
             element={
               <Cards
                 mData={movieData}
@@ -142,5 +142,7 @@ function App() {
     </Router>
   );
 }
+
+/* /awesome-movie-list/ */
 
 export default App;
