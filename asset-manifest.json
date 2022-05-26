@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/awesome-movie-list/static/css/main.957a90bf.css",
+    "main.js": "/awesome-movie-list/static/js/main.8e7d776d.js",
+    "static/js/787.dfba6593.chunk.js": "/awesome-movie-list/static/js/787.dfba6593.chunk.js",
+    "index.html": "/awesome-movie-list/index.html",
+    "main.957a90bf.css.map": "/awesome-movie-list/static/css/main.957a90bf.css.map",
+    "main.8e7d776d.js.map": "/awesome-movie-list/static/js/main.8e7d776d.js.map",
+    "787.dfba6593.chunk.js.map": "/awesome-movie-list/static/js/787.dfba6593.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.957a90bf.css",
+    "static/js/main.8e7d776d.js"
+  ]
+}
