@@ -122,7 +122,7 @@ function App() {
             }
           />
                 <Route
-            path="/awesome-movie-list"
+            path="/awesome-movie-list/"
             element={
               <Cards
                 mData={movieData}
